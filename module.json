@@ -1,0 +1,14 @@
+{
+  "id": "worldweb",
+  "title": "WorldWeb",
+  "description": "A system-agnostic worldbuilding graph. Journal entries become nodes, joined by tagged connections, each linkable to any document in the world.",
+  "version": "0.1.0",
+  "authors": [{ "name": "TheOtherFawkes" }],
+  "compatibility": { "minimum": "13", "verified": "14" },
+  "esmodules": ["scripts/main.js"],
+  "styles": ["styles/worldweb.css"],
+  "languages": [{ "lang": "en", "name": "English", "path": "lang/en.json" }],
+  "url": "https://github.com/TheOtherFawkes/worldweb",
+  "manifest": "https://raw.githubusercontent.com/TheOtherFawkes/worldweb/main/module.json",
+  "download": "https://github.com/TheOtherFawkes/worldweb/releases/download/v0.1.0/module.zip"
+}

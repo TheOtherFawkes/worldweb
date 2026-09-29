@@ -1,0 +1,28 @@
+<section class="worldweb-associate-body">
+  {{#if subject}}<p class="subject">{{subject}}</p>{{/if}}
+  {{#if atCategories}}
+  <ul class="list">
+    {{#each categories}}
+    <li><a data-action="category" data-type="{{type}}"><i class="{{icon}}"></i> {{label}}</a></li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <nav class="crumbs">
+    <button type="button" class="icon" data-action="back" data-tooltip="WORLDWEB.Back"><i class="fa-solid fa-arrow-left"></i></button>
+    <span>{{categoryLabel}}{{#each path}} / {{this}}{{/each}}</span>
+  </nav>
+  <ul class="list">
+    {{#each folders}}
+    <li><a data-action="folder" data-id="{{id}}"><i class="fa-solid fa-folder"></i> {{name}}</a></li>
+    {{/each}}
+    {{#each docs}}
+    <li><a data-action="pick" data-uuid="{{uuid}}"><i class="fa-regular fa-file"></i> {{name}}</a></li>
+    {{/each}}
+    {{#if empty}}<li class="none">{{localize "WORLDWEB.Associate.Empty"}}</li>{{/if}}
+  </ul>
+  <footer>
+    {{#if canNewFolder}}<button type="button" data-action="newFolder"><i class="fa-solid fa-folder-plus"></i> {{localize "WORLDWEB.Associate.NewFolder"}}</button>{{/if}}
+    <button type="button" data-action="newDoc"><i class="fa-solid fa-file-circle-plus"></i> {{localize "WORLDWEB.Associate.NewDoc"}}</button>
+  </footer>
+  {{/if}}
+</section>

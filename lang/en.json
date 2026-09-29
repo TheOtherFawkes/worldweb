@@ -1,0 +1,85 @@
+{
+  "WORLDWEB": {
+    "Title": "WorldWeb",
+    "OK": "OK",
+    "Name": "Name",
+    "Type": "Type",
+    "Journal": "Journal",
+    "Back": "Back",
+    "Close": "Close",
+    "Cancel": "Cancel",
+    "Empty": "No nodes yet. Add a node, or drag a journal entry onto the canvas.",
+    "AddNode": "New node",
+    "AddNodeHint": "Create a new journal entry as a node",
+    "AddExisting": "Add journal",
+    "AddExistingHint": "Turn an existing journal entry into a node",
+    "AddExistingNone": "Every journal you own is already a node.",
+    "Fit": "Fit graph to window",
+    "Layout": "Auto-arrange",
+    "LayoutConfirm": "Rearrange all nodes you own? Their saved positions will be replaced.",
+    "Connect": {
+      "Button": "Connect",
+      "Hint": "Select a node, press Connect, then click the target node",
+      "SelectFirst": "Select the node the connection starts from, then press Connect.",
+      "Pick": "Connecting from",
+      "Cancel": "click the target node, or press Esc to cancel.",
+      "Title": "New connection",
+      "Tags": "Tags",
+      "TagsHint": "e.g. Inside, Allied with",
+      "Directed": "Directed (arrow)",
+      "Create": "Create connection"
+    },
+    "Panel": {
+      "OpenJournal": "Open journal",
+      "Colour": "Colour",
+      "UseTagColour": "Use tag colour",
+      "Tags": "Tags",
+      "NoTags": "No tags",
+      "AddTag": "Add tag, press Enter",
+      "SourceHint": "Use this tag's colour",
+      "Linked": "Linked document",
+      "NoLinked": "None",
+      "Unlink": "Remove link",
+      "DropHint": "Or drag a document from the sidebar onto this panel.",
+      "Connections": "Connections",
+      "NoConnections": "No connections",
+      "Connection": "connection",
+      "Broken": "missing node",
+      "DeleteConnection": "Delete connection",
+      "DeleteConnectionConfirm": "Delete this connection?",
+      "RemoveNode": "Remove from graph",
+      "RemoveNodeConfirm": "Remove <strong>{name}</strong> from the graph only, or delete its journal entry too? Removing from the graph keeps the journal, and re-adding it restores its tags and connections.",
+      "RemoveGraphOnly": "Remove from graph",
+      "DeleteJournal": "Delete journal too"
+    },
+    "Associate": {
+      "Title": "Associate document",
+      "Button": "Associate",
+      "For": "Linking a document to {name}",
+      "ForTag": "Linking a document to tag \"{tag}\"",
+      "NewFolder": "New subfolder",
+      "NewDoc": "New document",
+      "Empty": "This folder is empty.",
+      "Created": "Created {name}."
+    },
+    "Settings": {
+      "Title": "WorldWeb settings",
+      "Graph": "Graph",
+      "Background": "Background",
+      "DefaultNode": "Default node colour",
+      "DefaultLink": "Default connection colour",
+      "Tags": "Tags",
+      "TagsHint": "Colours apply wherever a tag is the colour source. Tags you haven't set get an automatic colour.",
+      "NoTags": "No tags in use yet.",
+      "Reset": "Reset to automatic colour"
+    },
+    "Doc": {
+      "Missing": "Missing document"
+    },
+    "Error": {
+      "GMOnly": "Only a GM can change graph settings.",
+      "NotOwner": "You need owner permission on this journal to change it.",
+      "WorldJournalOnly": "Only journal entries in this world can become nodes."
+    }
+  }
+}

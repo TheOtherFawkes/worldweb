@@ -1,0 +1,108 @@
+<div class="worldweb-ui">
+  <nav class="worldweb-toolbar">
+    <button type="button" data-action="addNode" data-tooltip="WORLDWEB.AddNodeHint"><i class="fa-solid fa-plus"></i> {{localize "WORLDWEB.AddNode"}}</button>
+    <button type="button" data-action="addExisting" data-tooltip="WORLDWEB.AddExistingHint"><i class="fa-solid fa-book-open"></i> {{localize "WORLDWEB.AddExisting"}}</button>
+    <button type="button" data-action="connect" class="{{#if linking}}active{{/if}}" data-tooltip="WORLDWEB.Connect.Hint"><i class="fa-solid fa-link"></i> {{localize "WORLDWEB.Connect.Button"}}</button>
+    <span class="spacer"></span>
+    <button type="button" class="icon" data-action="layout" data-tooltip="WORLDWEB.Layout"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+    <button type="button" class="icon" data-action="fit" data-tooltip="WORLDWEB.Fit"><i class="fa-solid fa-expand"></i></button>
+    {{#if isGM}}<button type="button" class="icon" data-action="settings" data-tooltip="WORLDWEB.Settings.Title"><i class="fa-solid fa-palette"></i></button>{{/if}}
+  </nav>
+
+  {{#if linking}}
+  <div class="worldweb-banner">{{localize "WORLDWEB.Connect.Pick"}} <strong>{{linkSourceName}}</strong> &mdash; {{localize "WORLDWEB.Connect.Cancel"}}</div>
+  {{else if empty}}
+  <div class="worldweb-banner">{{localize "WORLDWEB.Empty"}}</div>
+  {{/if}}
+
+  <datalist id="worldweb-tags">{{#each allTags}}<option value="{{this}}">{{/each}}</datalist>
+
+  {{#if panel}}
+  <aside class="worldweb-panel">
+    {{#with panel}}
+    <header>
+      <span class="swatch" style="background:{{colour}}"></span>
+      {{#if isNode}}
+      <h3><a data-action="openNode" data-id="{{id}}" data-tooltip="WORLDWEB.Panel.OpenJournal">{{name}}</a></h3>
+      {{else}}
+      <h3>{{sourceName}} {{#if directed}}&rarr;{{else}}&mdash;{{/if}} {{#if targetName}}{{targetName}}{{else}}<em>{{localize "WORLDWEB.Panel.Broken"}}</em>{{/if}}</h3>
+      {{/if}}
+      <button type="button" class="icon" data-action="deselect" data-tooltip="WORLDWEB.Close"><i class="fa-solid fa-xmark"></i></button>
+    </header>
+
+    {{#if canEdit}}
+    <div class="row">
+      <label>{{localize "WORLDWEB.Panel.Colour"}}</label>
+      <input type="color" name="colour" value="{{colour}}">
+      {{#if hasManualColour}}<button type="button" class="link" data-action="clearColour">{{localize "WORLDWEB.Panel.UseTagColour"}}</button>{{/if}}
+    </div>
+    {{/if}}
+
+    {{#if isEdge}}{{#if canEdit}}
+    <div class="row">
+      <label>{{localize "WORLDWEB.Connect.Directed"}}</label>
+      <input type="checkbox" {{#if directed}}checked{{/if}} data-action="toggleDirected">
+    </div>
+    {{/if}}{{/if}}
+
+    <h4>{{localize "WORLDWEB.Panel.Tags"}}</h4>
+    <ul class="tags">
+      {{#each tags}}
+      <li class="tag {{#if isSource}}source{{/if}}">
+        <button type="button" class="dot" style="background:{{colour}}" {{#if canEdit}}data-action="setSourceTag"{{/if}} data-tag="{{name}}" data-tooltip="WORLDWEB.Panel.SourceHint"></button>
+        {{#if linked}}<a data-action="openTag" data-tag="{{name}}">{{name}}</a>{{else}}<span>{{name}}</span>{{/if}}
+        {{#if canEdit}}<button type="button" class="icon remove" data-action="removeTag" data-tag="{{name}}"><i class="fa-solid fa-xmark"></i></button>{{/if}}
+      </li>
+      {{else}}
+      <li class="none">{{localize "WORLDWEB.Panel.NoTags"}}</li>
+      {{/each}}
+    </ul>
+    {{#if canEdit}}<input type="text" name="newTag" list="worldweb-tags" placeholder="{{localize 'WORLDWEB.Panel.AddTag'}}">{{/if}}
+
+    <h4>{{localize "WORLDWEB.Panel.Linked"}}</h4>
+    <div class="linked">
+      {{#if linked}}
+      <a data-action="openDoc" data-uuid="{{linked.uuid}}" class="{{#if linked.missing}}missing{{/if}}"><i class="{{linked.icon}}"></i> {{linked.name}}</a>
+      {{#if canEdit}}<button type="button" class="icon" data-action="unlink" data-tooltip="WORLDWEB.Panel.Unlink"><i class="fa-solid fa-link-slash"></i></button>{{/if}}
+      {{else}}
+      <span class="none">{{localize "WORLDWEB.Panel.NoLinked"}}</span>
+      {{/if}}
+    </div>
+    {{#if canEdit}}
+    <button type="button" data-action="associate"><i class="fa-solid fa-link"></i> {{localize "WORLDWEB.Associate.Button"}}</button>
+    <p class="hint">{{localize "WORLDWEB.Panel.DropHint"}}</p>
+    {{/if}}
+
+    {{#if isNode}}
+    <h4>{{localize "WORLDWEB.Panel.Connections"}}</h4>
+    <ul class="connections">
+      {{#each outgoing}}
+      <li class="{{#if broken}}broken{{/if}}">
+        <a data-action="selectEdge" data-id="{{id}}" data-source="{{source}}">
+          <span class="dir">{{#if directed}}&rarr;{{else}}&mdash;{{/if}}</span> {{other}}{{#if label}} <em>({{label}})</em>{{/if}}
+        </a>
+        {{#if broken}}{{#if ../canEdit}}<button type="button" class="icon" data-action="deleteEdge" data-id="{{id}}" data-source="{{source}}"><i class="fa-solid fa-trash"></i></button>{{/if}}{{/if}}
+      </li>
+      {{/each}}
+      {{#each incoming}}
+      <li><a data-action="selectEdge" data-id="{{id}}" data-source="{{source}}">
+        <span class="dir">{{#if directed}}&larr;{{else}}&mdash;{{/if}}</span> {{other}}{{#if label}} <em>({{label}})</em>{{/if}}
+      </a></li>
+      {{/each}}
+      {{#unless hasConnections}}<li class="none">{{localize "WORLDWEB.Panel.NoConnections"}}</li>{{/unless}}
+    </ul>
+    {{#if canEdit}}
+    <footer>
+      <button type="button" data-action="connect"><i class="fa-solid fa-link"></i> {{localize "WORLDWEB.Connect.Button"}}</button>
+      <button type="button" data-action="removeNode"><i class="fa-solid fa-eye-slash"></i> {{localize "WORLDWEB.Panel.RemoveNode"}}</button>
+    </footer>
+    {{/if}}
+    {{else}}
+    {{#if canEdit}}
+    <footer><button type="button" data-action="deleteEdge"><i class="fa-solid fa-trash"></i> {{localize "WORLDWEB.Panel.DeleteConnection"}}</button></footer>
+    {{/if}}
+    {{/if}}
+    {{/with}}
+  </aside>
+  {{/if}}
+</div>

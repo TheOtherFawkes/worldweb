@@ -1,0 +1,26 @@
+<section class="worldweb-settings-body">
+  <h4>{{localize "WORLDWEB.Settings.Graph"}}</h4>
+  <div class="row"><label>{{localize "WORLDWEB.Settings.Background"}}</label><input type="color" data-field="background" value="{{background}}"></div>
+  <div class="row"><label>{{localize "WORLDWEB.Settings.DefaultNode"}}</label><input type="color" data-field="defaultColour" value="{{defaultColour}}"></div>
+  <div class="row"><label>{{localize "WORLDWEB.Settings.DefaultLink"}}</label><input type="color" data-field="defaultLinkColour" value="{{defaultLinkColour}}"></div>
+
+  <h4>{{localize "WORLDWEB.Settings.Tags"}}</h4>
+  <p class="hint">{{localize "WORLDWEB.Settings.TagsHint"}}</p>
+  <ul class="tag-registry">
+    {{#each tags}}
+    <li>
+      <input type="color" data-tag="{{name}}" value="{{colour}}">
+      <span class="name">{{name}}</span>
+      {{#if linked}}
+      <a data-action="openDoc" data-uuid="{{linked.uuid}}" class="{{#if linked.missing}}missing{{/if}}"><i class="{{linked.icon}}"></i> {{linked.name}}</a>
+      <button type="button" class="icon" data-action="unlinkTag" data-tag="{{name}}" data-tooltip="WORLDWEB.Panel.Unlink"><i class="fa-solid fa-link-slash"></i></button>
+      {{else}}
+      <button type="button" class="icon" data-action="associateTag" data-tag="{{name}}" data-tooltip="WORLDWEB.Associate.Button"><i class="fa-solid fa-link"></i></button>
+      {{/if}}
+      {{#if registered}}<button type="button" class="icon" data-action="resetTag" data-tag="{{name}}" data-tooltip="WORLDWEB.Settings.Reset"><i class="fa-solid fa-rotate-left"></i></button>{{/if}}
+    </li>
+    {{else}}
+    <li class="none">{{localize "WORLDWEB.Settings.NoTags"}}</li>
+    {{/each}}
+  </ul>
+</section>

@@ -1,0 +1,110 @@
+/* WorldWeb — uses Foundry's own theme variables so it matches light and dark themes */
+
+.worldweb {
+  --ww-glow: #ff6400;
+  --ww-muted: var(--color-text-secondary, #8f8d85);
+  --ww-border: var(--color-border, rgba(128, 128, 128, 0.4));
+}
+
+.worldweb .none,
+.worldweb .hint { color: var(--ww-muted); font-style: italic; }
+.worldweb .hint { font-size: var(--font-size-12, 12px); margin: 0.25rem 0 0; }
+.worldweb h4 { margin: 0.9rem 0 0.35rem; border-bottom: 1px solid var(--ww-border); font-size: var(--font-size-13, 13px); }
+.worldweb ul { list-style: none; margin: 0; padding: 0; }
+.worldweb a { cursor: pointer; }
+.worldweb a.missing { color: var(--color-level-error, #c33); }
+.worldweb button.icon { flex: 0 0 auto; width: 26px; height: 26px; padding: 0; line-height: 1; }
+.worldweb button.link { border: none; background: none; text-decoration: underline; width: auto; padding: 0 0.25rem; }
+.worldweb .row { display: flex; align-items: center; gap: 0.5rem; margin: 0.35rem 0; }
+.worldweb .row > label { flex: 1; }
+.worldweb input[type=color] { flex: 0 0 36px; width: 36px; height: 24px; padding: 0; border: 1px solid var(--ww-border); }
+
+/* ---------- Graph window ---------- */
+
+.worldweb-graph .window-content {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto 1fr;
+  overflow: hidden;
+}
+.worldweb-graph .worldweb-ui { display: contents; }
+
+.worldweb-toolbar {
+  grid-column: 1; grid-row: 1;
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--ww-border);
+}
+.worldweb-toolbar button { flex: 0 0 auto; width: auto; white-space: nowrap; }
+.worldweb-toolbar .spacer { flex: 1; }
+.worldweb-toolbar button.active { box-shadow: 0 0 6px var(--ww-glow); border-color: var(--ww-glow); }
+
+.worldweb-banner {
+  grid-column: 1; grid-row: 2;
+  padding: 0.3rem 0.6rem;
+  font-size: var(--font-size-13, 13px);
+  border-bottom: 1px solid var(--ww-border);
+}
+
+.worldweb-canvas-wrap { grid-column: 1; grid-row: 3; position: relative; min-height: 0; min-width: 0; }
+.worldweb-canvas { position: absolute; inset: 0; }
+
+.worldweb-panel {
+  grid-column: 2; grid-row: 1 / span 3;
+  width: 290px;
+  overflow-y: auto;
+  padding: 0.5rem 0.75rem 0.75rem;
+  border-left: 1px solid var(--ww-border);
+}
+.worldweb-panel header { display: flex; align-items: center; gap: 0.5rem; }
+.worldweb-panel header h3 { flex: 1; margin: 0; border: none; font-size: var(--font-size-16, 16px); overflow-wrap: anywhere; }
+.worldweb-panel .swatch { flex: 0 0 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0, 0, 0, 0.5); }
+.worldweb-panel input[name=newTag] { width: 100%; margin-top: 0.35rem; }
+.worldweb-panel .linked { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; min-height: 26px; }
+.worldweb-panel .linked a { flex: 1; overflow-wrap: anywhere; }
+.worldweb-panel footer { display: flex; gap: 0.35rem; margin-top: 0.9rem; }
+
+/* Tags: dot = colour, orange outline = colour source */
+.worldweb .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.worldweb .tag {
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.1rem 0.2rem 0.1rem 0.35rem;
+  border: 1px solid var(--ww-border); border-radius: 999px;
+}
+.worldweb .tag.source { border-color: var(--ww-glow); box-shadow: 0 0 0 1px var(--ww-glow) inset; }
+.worldweb .tag .dot {
+  width: 12px; height: 12px; min-height: 0; padding: 0;
+  border-radius: 50%; border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.worldweb .tag .remove { width: 18px; height: 18px; min-height: 0; border: none; background: none; font-size: 10px; }
+
+.worldweb .connections li { display: flex; align-items: center; gap: 0.3rem; padding: 0.15rem 0; }
+.worldweb .connections li a { flex: 1; overflow-wrap: anywhere; }
+.worldweb .connections .dir { display: inline-block; width: 1.2em; text-align: center; }
+.worldweb .connections li.broken a { color: var(--color-level-error, #c33); }
+
+/* ---------- Associate ---------- */
+
+.worldweb-associate .window-content { padding: 0.5rem; }
+.worldweb-associate-body { display: flex; flex-direction: column; height: 100%; gap: 0.4rem; }
+.worldweb-associate-body .subject { margin: 0; color: var(--ww-muted); }
+.worldweb-associate-body .crumbs { display: flex; align-items: center; gap: 0.5rem; }
+.worldweb-associate-body .list { flex: 1; overflow-y: auto; border: 1px solid var(--ww-border); border-radius: 3px; }
+.worldweb-associate-body .list li { border-bottom: 1px solid var(--ww-border); }
+.worldweb-associate-body .list li:last-child { border-bottom: none; }
+.worldweb-associate-body .list a, .worldweb-associate-body .list .none { display: block; padding: 0.4rem 0.5rem; }
+.worldweb-associate-body .list a:hover { background: rgba(255, 100, 0, 0.12); }
+.worldweb-associate-body .list i { width: 1.2em; text-align: center; }
+.worldweb-associate-body footer { display: flex; gap: 0.35rem; }
+
+/* ---------- Settings ---------- */
+
+.worldweb-settings .window-content { padding: 0.5rem 0.75rem; overflow-y: auto; }
+.worldweb .tag-registry li { display: flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0; }
+.worldweb .tag-registry .name { flex: 1; }
+.worldweb .tag-registry a { max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- Journal sidebar button ---------- */
+
+.worldweb-open { flex: 1 1 100%; }
